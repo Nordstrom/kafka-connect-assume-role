@@ -48,7 +48,7 @@ The following fields are optional (but recommended) (see https://docs.aws.amazon
     "storage.class": "io.confluent.connect.s3.storage.S3Storage",
     "tasks.max": 1,
     "timezone": "UTC",
-    "topics": "proton-s3-sink-test",
+    "topics": "my-s3-sink-topic",
     "topics.dir": "",
     "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
     "value.converter.schemas.enable": false
