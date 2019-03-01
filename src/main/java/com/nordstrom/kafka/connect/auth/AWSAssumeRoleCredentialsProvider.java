@@ -11,6 +11,7 @@ import org.apache.kafka.common.Configurable;
 import java.util.Map;
 
 public class AWSAssumeRoleCredentialsProvider implements AWSCredentialsProvider, Configurable {
+  //NB: uncomment slf4j imports and field declaration to enable logging.
 //  private static final Logger log = LoggerFactory.getLogger(AWSAssumeRoleCredentialsProvider.class);
 
   public static final String EXTERNAL_ID_CONFIG = "external.id";
@@ -33,7 +34,7 @@ public class AWSAssumeRoleCredentialsProvider implements AWSCredentialsProvider,
     AWSSecurityTokenServiceClientBuilder clientBuilder = AWSSecurityTokenServiceClientBuilder.standard();
     AWSCredentialsProvider provider = new STSAssumeRoleSessionCredentialsProvider.Builder(roleArn, sessionName)
         .withStsClient(clientBuilder.defaultClient())
-        .withExternalId(externalId)   // TODO: OK to set with null or empty?
+        .withExternalId(externalId)
         .build();
 
     return provider.getCredentials();
@@ -41,7 +42,7 @@ public class AWSAssumeRoleCredentialsProvider implements AWSCredentialsProvider,
 
   @Override
   public void refresh() {
-    //TODO ?
+    //Nothing to do really, since we are assuming a role.
   }
 
   private String getOptionalField(final Map<String, ?> map, final String fieldName) {
